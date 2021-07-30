@@ -1,0 +1,46 @@
+<thead>
+    <tr class="header">
+        <th>&nbspClient</th>
+        <th>&nbspMRN</th>
+        <th>&nbspDate of Service</th>
+        <th>&nbspLast Name</th>
+        <th>&nbspFirst Name</th>
+        <th>&nbspPDF</th>
+        <th>&nbspSchedule</th>
+        <th>&nbspIN PHI</th>
+        <th>&nbspFacility</th>
+        <th>&nbspLocation</th>
+        <th>&nbspCSN</th>
+        {% if user.username == 'Clerical' %}
+            <th>&nbspRemove From List</th>
+        {% endif %}
+    </tr>
+</thead>
+<tbody>
+    {% for item in in_phi %}
+        <tr>
+        <td class="tabcontent">{{ item.Client }}</td>
+        <td class="tabcontent">{{ item.MRN }}</td>
+        <td class="tabcontent">{{ item.DOS }}</td>
+        <td class="tabcontent">{{ item.LName }}</td>
+        <td class="tabcontent">{{ item.FName }}</td>
+        {% if item.PDF %}
+            <td class="tabcontent"><button class='copy' value='{{ item.PDF }}'>Copy Link</button></td>
+        {% else %}
+            <td class="tabcontent">None</td>
+        {% endif %}
+        {% if item.Schedule %}
+            <td class="tabcontent"><button class='copy' value='{{ item.Schedule }}'>Copy Link</button></td>
+        {% else %}
+            <td class="tabcontent">None</td>
+        {% endif %}
+        <td class="tabcontent">{{ item.InPHI }}</td>
+        <td class="tabcontent">{{ item.Facility }}</td>
+        <td class="tabcontent">{{ item.Location }}</td>
+        <td class="tabcontent">{{ item.CSN }}</td>
+        {% if user.username == 'Clerical' %}
+            <td class="tabcontent" id='{{ item.ID }}'><button onclick="removeFromList('{{ item.DOS }}', '{{ item.MRN }}', '{{ item.LName }}', '{{ item.FName }}', '{{ item.ID }}')">Remove</button></td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+</tbody>

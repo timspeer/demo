@@ -1,0 +1,50 @@
+[COMMON]
+server = #REMOVED#
+
+[BELL_Skagit]
+url = 
+username = #REMOVED#
+site = BELL Skagit EPIC
+root = data all\EDI\BELL_Skagit
+
+[BLDR_BCH]
+client = BLDR
+location = BCH
+url = #REMOVED#
+username = #REMOVED#
+site = BLDR BCH EPIC
+root = data all\EDI\BLDR_BCH
+
+finish = bldr_bch\bldr_bch_run.pyw
+
+[MEDAXION_MTRXE]
+url = #REMOVED#
+username = #REMOVED#
+site = MTRX Evergreen Medaxion
+root = data all\EDI\MTRX_Evergreen\Schedules PDFs
+
+[NMPS_PHS]
+client = NMPS
+location = PHS
+url = #REMOVED#
+username = #REMOVED#
+site = NMPS Presbytarian EPIC
+root = DATA ALL\EDI\NMPS_Presbytarian
+mrns = data all\Schedules\nmps_phs_mrns.xlsx
+
+[NRAC_Kalispell]
+client = NRAC
+location = Kalispell
+url = #REMOVED#
+username = #REMOVED#
+site = NRAC Kalispell Plexus
+root = data all\EDI\NRAC
+
+[SPAN_Presbytarian]
+url = #REMOVED#
+username = #REMOVED#
+site = NMPS Presbytarian EPIC
+root = data all\EDI\SPAN_Presbytarian
+
+client_id = #REMOVED#
+client_secret = #REMOVED#

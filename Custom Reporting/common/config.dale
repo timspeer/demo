@@ -1,0 +1,9 @@
+[COMMON]
+server : #REMOVED#
+global : data it\Git\Global Methods
+common : data it\Git\Custom Reporting\common
+global_list : send_email
+
+[MTRX_Compensation]
+root : data all\EDI\MTRX_Evergreen\XML
+table : MTRX_Comensation

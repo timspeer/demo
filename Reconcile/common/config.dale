@@ -1,0 +1,93 @@
+[COMMON]
+server = #REMOVED#
+sql = #REMOVED#
+
+[ANSA_MHS]
+client : ANSA
+location : MHS
+root : data all\EDI\ANSA_MHS
+
+[BELL_PeaceHealth]
+client : BELL
+location : PeaceHealth
+root : data all\EDI\BELL_PeaceHealth
+
+[BELL_Skagit]
+client : BELL
+location : SVH
+root : data all\EDI\BELL_Skagit
+
+[BLDR_BCH]
+client : BLDR
+location : BCH
+root : data all\EDI\BLDR_BCH
+schedules : Schedules PDFs
+csvs : Demographics CSVs
+billing_slips : Billing Slip EXCEL
+
+[BLDR_UCH]
+client : BLDR
+location : UCH
+root : data all\EDI\BLDR_UCH
+pdfs : Billing And Compliance PDFs
+csvs : Schedules CSVs
+
+[BLDR_SurgeryCenters]
+client : BLDR
+location : SurgeryCenters
+root : data all\EDI\BLDR_BCH
+schedules : Surgery Centers PDFs
+pesc : PESC Schedules EXCEL
+
+[GVAA_Bozeman]
+client : GVAA
+location : Bozeman
+location2: RMSC
+location3: Ortho
+root : data all\EDI\GVAA_Bozeman Health
+root2 : data all\EDI\GVAA_RMSC
+root3 : data all\EDI\GVAA_Ortho
+
+[MTRX_Evergreen]
+client : MTRX
+location : Evergreen
+root : data all\EDI\MTRX_Evergreen
+
+[MTRX_Overlake]
+client : MTRX
+location : Overlake
+root : data all\EDI\MTRX_Overlake
+
+[NRAC_KRMC]
+client : NRAC
+location : KRMC
+root : data all\EDI\NRAC
+
+[PCFC_CHI]
+client : PCFC
+location : CHI
+database : pcfc_chi_reconcile_filetracker.db
+root : data all\EDI\PCFC_CHI_Franciscan
+billing_slips : BillingSlips EXCEL
+
+[PCFC_Providence]
+client : PCFC
+location : Providence
+root : data all\EDI\PCFC_Providence
+
+[PCFC_SED]
+client : PCFC
+location : SED
+root : data all\EDI\PCFC_Swedish
+
+[RENO_SMPH]
+client : RENO
+location : SMPH
+root : data all\EDI\RENO_SMPH
+excel_schedules : Schedules EXCEL
+
+[RETA_SMPH]
+client : RETA
+location : SMPH
+root : data all\EDI\RETA_SMPH
+excel_schedules : Schedules EXCEL

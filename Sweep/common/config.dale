@@ -1,0 +1,70 @@
+[COMMON]
+url = #REMOVED#
+username : #REMOVED#
+server : #REMOVED#
+destination : data all\Coding-Sharefile\Incoming Charges
+
+[AACE_Charges]
+table : AACE_Charges
+pattern : AACE/Charge Files to SupportMed
+
+[BLDR_Case_Logs]
+table : BLDR_Case_Logs
+pattern : BLDR/Files to SMI/Case Logs
+destination : DATA ALL\EDI\BLDR_BCH\Surgery Centers PDFs
+
+[BLDR_Facility_Data_Imports]
+table : BLDR_Facility_Data_Imports
+pattern : BLDR/Facility Data Imports
+
+[BSKY_Charges]
+table : BSKY_Charges
+pattern : BSKY/Charges Upload
+
+[LONG_Charges]
+table : LONG_Charges
+pattern : LONG/Charge Files to SupportMed
+
+[MISS_Charges]
+table : MISS_Charges
+pattern : MISS/Charge Files to SupportMed
+
+[PACE_Evergreen_Eye]
+table : PACE_Evergreen_Eye
+pattern : PACE/Evergreen Eye Center
+
+[PACE_Facility_Data_Imports]
+table : PACE_Facility_Data_Imports
+pattern : PACE/Facility Data Imports
+
+[PACE_PacMed]
+table : PACE_PacMed
+pattern : PACE/PacMed
+
+[PACE_Soundview_Surgery]
+table : PACE_Soundview_Surgery
+pattern : PACE/Soundview Surgery Center
+
+[PACE_Valley_Eye]
+table : PACE_Valley_Eye
+pattern : PACE/Valley Eye
+
+[PCFC_Clearview_Eye]
+table : PCFC_Clearview_Eye
+pattern : PCFC/Facility data imports/Clearview Eye & Laser
+
+[PCFC_Laser]
+table : PCFC_Laser
+pattern : PCFC/Facility data imports/Laser & Surgery Center
+
+[RENO_Charges]
+table : RENO_Charges
+pattern : RENO/Charge Files to SupportMed/Charges
+
+[RENO_PSCN]
+table : RENO_PSCN
+pattern : RENO/Charge Files to SupportMed/PSCN
+
+[SOSA_Images]
+table : SOSA_Images
+pattern : SOSA/Image files

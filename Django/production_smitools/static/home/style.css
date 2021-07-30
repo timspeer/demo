@@ -1,0 +1,260 @@
+.sidebar {
+  font-family: 'helvetica';
+  color:#fff;
+  font-size:.85rem;
+  font-weight:700;
+  margin-right:.25rem;
+  background-color:#3b406d;
+  min-height:100vh;
+  width:14rem;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none;
+  position: fixed;
+}
+
+*,::after,::before {
+  -webkit-box-sizing:border-box
+  ;box-sizing:border-box;
+}
+
+.sidebar .sidebar-brand {
+  font-family: 'helvetica';
+  font-size:1.25rem;
+  font-weight:1000;
+  padding:1.5rem 1rem;
+  text-align:center;
+  text-transform:uppercase;
+  color:#fff;
+  display: inline;
+}
+
+.sidebar .nav-item .nav-link {
+  color:#fff;
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:1rem;
+  width:14rem;
+}
+
+a {
+  color:#4e73df;
+  text-decoration:none;
+  background-color:transparent;
+}
+
+p {
+  font-size:15px;
+  white-space: pre-line;
+}
+
+ul {
+  margin-top:0;
+  margin-bottom:1rem;
+}
+
+h2 {
+  font-size: 15px;
+  text-align: left;
+}
+
+button, input {
+  margin:0;
+  font-family:inherit;
+  font-size:inherit;
+  line-height:inherit;
+}
+
+body {
+  margin:0;
+  font-family:Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size:1rem;
+  font-weight:400;
+  line-height:1.5;
+  color:#858796;
+  text-align:left;
+  background-color:#fff;
+  padding-bottom:10%;
+}
+
+#wrapper {
+  margin-left: 14.5rem;
+  display:-webkit-box;
+  display:-ms-flexbox;
+}
+
+#myInput {
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable th {
+  cursor: pointer;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+#myTable2 {
+  border-collapse: collapse;
+  width: 80rem;
+  border: 1px solid #ddd;
+  font-size: 22px;
+  text-align: center;
+  padding: 20px;
+}
+
+#myTable2 th {
+  cursor: pointer;
+}
+
+#myTable2 tr {
+  border-bottom: 1px solid #ddd; 
+}
+
+#myTable2 tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+#myTable2 .sorting, .sorting_asc, .sorting_desc, .sorting_both {
+  height: 1.5rem;
+  background : none;
+}
+
+#accounting_table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  text-align: left;
+  padding: 12px;
+}
+
+#accounting_table tr {
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#accounting_table tr.header, #accounting_table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.check_box img{
+  max-width : 20px;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.hide {
+  display: none;
+}
+
+#right-button {
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  background-color: #f1f1f1;
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.calendar__week, .calendar__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);  
+}
+
+.calendar__week {
+  text-align: right;
+  overflow: hidden;
+}
+
+.calendar__header {
+  grid-auto-rows: 50px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.calendar__day {
+  padding: 16px;
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+}
+
+.calendar {
+  text-align: center;
+  background-color: #f1f1f1;
+  border: 1px solid #e1e1e1;
+  width: 90rem;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.calendar__day:last-child {
+  border-right: 0;
+}
+
+#cal_header {
+  width: 90rem;
+  position: fixed;
+}
+
+.acc {
+  margin-left: 50px;
+}
+
+.tabcontent {
+  vertical-align: text-top;
+}

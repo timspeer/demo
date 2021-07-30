@@ -1,0 +1,69 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SupportMed Intranet">
+    <meta name="author" content="Timothy Speer">
+    <title>SupportMed {% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="{% static 'home/jquery.dataTables.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'home/style.css' %}" type="text/css" />
+    <script src="{% static 'home/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'home/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'home/style.js' %}"></script>
+</head>
+<body onload="init_search();accordion()">
+    {% include 'home/partials/nav-bar.html' %}
+    <div id="wrapper">
+    {% block pagecontent %}    
+        <div>
+            <div class="tab">
+                <button id="phi" class="tablinks" onclick="show_in_phi()">Show in PHI</button>
+            </div>
+            <br>
+            <button id="right-button" onclick="refresh_content()">Rerun</button>
+            <br>
+            <table id="myTable" class='sortable'>
+            <span> From: <input type="date" id="beg_date" onchange="range()"/>
+            <span>To: <input type="date" id="end_date" onchange="range()"/>
+            <span><button id="excel_export" onclick="fnExcelReport('MTRX Report.csv')">Export to Excel</button></span>
+            <thead>
+                <tr class="header">
+                    <th>&nbspCLIENT</th>
+                    <th>&nbspMRN</th>
+                    <th>&nbspDate of Service</th>
+                    <th>&nbspLast Name</th>
+                    <th>&nbspFirst Name</th>
+                    <th>&nbspSchedule</th>
+                    <th>&nbspPDF</th>
+                    <th>&nbspIn Database</th>
+                    <th>&nbspBilling Slips</th>
+                    <th>&nbspLocation</th>
+                    <th>&nbspIn PHI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in in_phi %}
+                    <tr>
+                    {% for item_ in item %} 
+                    {% if forloop.counter0 == 5 and item_ or forloop.counter0 == 6 and item_ %}
+                            <td class="tabcontent"><button class='pdf' value='{{ item_ }}'>Copy Link</button></td>
+                        {% else %}
+                            <td class="tabcontent">{{ item_ }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    {% endblock %} 
+    </div> 
+</body>
+</html>

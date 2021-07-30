@@ -1,0 +1,62 @@
+SELECT DISTINCT client, sum(casecnt) as batch_count, facility, dosdt
+INTO #temp_batches
+FROM #REMOVED# 
+WHERE dosDT BETWEEN DATEADD(day, -45, GETDATE()) AND DATEADD(day, +1, GETDATE())
+group by facility, dosdt, client
+
+SELECT
+	Incident.ProvOrgID,
+	Incident.ServiceDT,
+	HealthCareFacility.Name,
+	count(*) as COUNT
+
+INTO #temp_keyed
+
+FROM #REMOVED#
+
+INNER JOIN #REMOVED#
+ON Incident.FacilityID = HealthCareFacility.ID
+
+WHERE Incident.ServiceDt BETWEEN DATEADD(day, -45, GETDATE()) AND DATEADD(day, +1, GETDATE())
+
+GROUP BY Incident.ServiceDT, HealthCareFacility.Name, Incident.ProvOrgID
+
+SELECT DISTINCT
+
+	ProviderOrganization.Alias as CLIENT,
+	CASE
+		WHEN #temp_batches.dosDT IS NOT NULL THEN FORMAT(#temp_batches.dosDT, 'MM/dd/yyyy')
+		ELSE FORMAT(#temp_keyed.ServiceDt, 'MM/dd/yyyy')
+	END as DATE,
+	HealthCareFacility.Name as FACILITY,
+	CASE
+		WHEN #temp_keyed.COUNT IS NULL THEN '0'
+		ELSE CAST(#temp_keyed.COUNT as VARCHAR)
+	END as COUNT,
+	CASE
+		WHEN #temp_batches.batch_count IS NULL THEN '0'
+		ELSE CAST(#temp_batches.batch_count as VARCHAR)
+	END as BATCH
+
+FROM #temp_batches
+
+FULL JOIN #temp_keyed
+ON #temp_batches.facility = #temp_keyed.Name
+AND #temp_batches.dosDT = #temp_keyed.ServiceDt
+
+INNER JOIN #REMOVED#
+ON ProviderOrganization.Alias = #temp_batches.client
+OR ProviderOrganization.ID = #temp_keyed.ProvOrgID
+
+INNER JOIN #REMOVED#
+ON ProviderOrganization.ID = ProvOrgFacility.ProvOrgID
+
+INNER JOIN #REMOVED#
+ON ProvOrgFacility.FacilityID = HealthCareFacility.ID
+AND (
+	#temp_batches.facility = HealthCareFacility.Name OR
+	#temp_keyed.Name = HealthCareFacility.Name
+)
+
+DROP TABLE #temp_batches
+DROP TABLE #temp_keyed

@@ -1,0 +1,19 @@
+[COMMON]
+url = #REMOVED#
+username : #REMOVED#
+reports : #REMOVED#
+
+[BELL]
+client = BELL
+root = BELL/Monthly Reports
+table = TEST
+
+[MTRX_E]
+client = MTRX E
+root = TEST_ACCOUNTING_TEST/Monthly Reports/Shareholders
+table = TEST
+
+[PCFC]
+client = PCFC
+root = PCFC/Monthly Reports
+table = TEST

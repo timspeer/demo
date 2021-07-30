@@ -1,0 +1,53 @@
+<thead>
+    <tr class="header">
+        <th style="min-width:50px">#</th>
+        <th>Client</th>
+        <th></th>
+        <th>Provider</th>
+        <th>Local File</th>
+        <th>Sharefile Folder</th>
+        <th>Remote File</th>
+    </tr>
+</thead>
+<tbody>
+    {% for item in providers %}
+        <tr id="{{ item.id }}">
+        <td class="tabcontent">{{ forloop.counter }}</td>
+        <td class="tabcontent">{{ item.client }}</td>
+        <td class="tabcontent">
+            <form action="remove/" method='post'>
+                {% csrf_token %}
+                <input name='remove' type='hidden' value="{{ item.id }}">
+                <input onclick="return confirm('Remove Record?');" type="submit" value="Remove">
+            </form>
+        </td>
+        <td class="tabcontent">
+            <form action="update/" method='post'>
+                {% csrf_token %}
+                <input name='update_id' type='hidden' value="{{ item.id }}">
+                <input name='update_name' type="text" value="{{ item.name }}">
+                <input type="submit" value="Update">
+            </form>
+        </td>
+        {% load static %}
+        <td id="{{ item.id }}_local" class="check_box">{{ item.local_file }}</td>
+        <td id="{{ item.id }}_sharefile" class="check_box">{{ item.sharefile_folder }}</td>
+        <td id="{{ item.id }}_remote_file" class="check_box">{{ item.published_file }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td class="tabcontent"></td>
+        <td class="tabcontent">PCFC</td>
+        <td class="tabcontent"></td>
+        <td class="tabcontent">
+            <form action="create/" method='post'>
+                {% csrf_token %}
+                <input id='add_provider' name='create' type="text" value="Enter New Provider" onfocus="this.value=''">
+                <input type="submit" value="Add Provider">
+            </form>
+        </td>
+        <td class="tabcontent"></td>
+        <td class="tabcontent"></td>
+        <td class="tabcontent"><button onclick="distribute()">Publish</button></td>
+    </tr>
+</tbody>

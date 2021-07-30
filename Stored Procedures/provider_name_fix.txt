@@ -1,0 +1,77 @@
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+
+INSERT INTO #REMOVED# (RawName, Client)
+SELECT DISTINCT RawNameProvider, enc.Client FROM SMI_Billable.dbo.SMI_Provider as enc
+LEFT JOIN #REMOVED# as crosswalk
+ON enc.RawNameProvider = crosswalk.RawName AND enc.Client = crosswalk.Client
+WHERE crosswalk.RawName is NULL
+AND RawNameProvider is not NULL and RawNameProvider <> ''
+AND (NPIProvider is NULL OR LNameProvider is NULL)
+
+SELECT ProviderOrganization.Alias, LastName, FirstName, RefProvider.NPI
+INTO #temp_providers
+FROM #REMOVED#
+INNER JOIN #REMOVED#
+ON RefProvider.ID = RefProvAssigned.RefProviderID
+INNER JOIN #REMOVED#
+ON RefProvAssigned.ProvOrgID = ProviderOrganization.ID
+
+INSERT INTO #temp_providers
+SELECT provorg.Alias, prov.LastName, prov.FirstName, prov.NPI
+FROM #REMOVED# as provorg
+INNER JOIN #REMOVED# as prov
+ON provorg.ID = prov.ProvOrgID 
+
+UPDATE #REMOVED#
+SET Providers.FixedName = temp.FirstName+' '+temp.LastName, Providers.NPI = temp.NPI, Providers.LName = temp.LastName, Providers.FName = temp.FirstName
+FROM #REMOVED# as smi
+INNER JOIN #temp_providers as temp
+ON temp.Alias = smi.Client
+AND (REPLACE(smi.RawName, '-', ' ') like '%'+REPLACE(temp.FirstName, '-', ' ')+'%'+REPLACE(temp.LastName, '-', ' ')+'%'
+OR REPLACE(smi.RawName, '-', ' ') like '%'+REPLACE(temp.LastName, '-', ' ')+'%'+REPLACE(temp.FirstName, '-', ' ')+'%')
+WHERE smi.FixedName is NULL
+
+UPDATE #REMOVED#
+SET Providers.NPI = temp.NPI
+FROM #REMOVED# as smi
+INNER JOIN #temp_providers as temp
+ON temp.Alias = smi.Client AND smi.FixedName = temp.FirstName+' '+temp.LastName
+WHERE smi.NPI is NULL
+
+DROP TABLE #temp_providers
+
+UPDATE #REMOVED#
+SET LNameProvider = prov.LName, FNameProvider = prov.FName, NPIProvider = prov.NPI 
+FROM #REMOVED# as smi
+INNER JOIN #REMOVED# as prov
+ON smi.Client = prov.Client AND smi.RawNameProvider = prov.RawName
+WHERE prov.FixedName is not NULL AND smi.NPIProvider is NULL
+
+UPDATE #REMOVED#
+SET LNameProvider = prov.LName, FNameProvider = prov.FName
+FROM #REMOVED# as smi
+CROSS APPLY (
+	SELECT TOP 1 providers.FixedName, providers.LName, providers.FName
+	FROM #REMOVED# as providers
+	WHERE providers.Client = smi.client AND smi.NPIProvider = providers.NPI
+	ORDER BY providers.FixedName
+) prov
+WHERE prov.FixedName is not NULL AND (FNameProvider+' '+LNameProvider) <> prov.FixedName
+
+UPDATE #REMOVED#
+SET LNameProvider = prov.LName, FNameProvider = prov.FName
+FROM #REMOVED# as smi
+INNER JOIN #REMOVED# as prov
+ON smi.Client = prov.Client AND smi.NPIProvider = prov.NPI
+WHERE prov.FixedName is not NULL AND smi.LNameProvider is NULL
+
+INSERT INTO #REMOVED# (Client, LName, FName, NPI, FixedName) 
+SELECT ProviderOrganization.Alias, LastName, FirstName, RefProvider.NPI, FirstName+' '+LastName
+FROM #REMOVED#
+INNER JOIN #REMOVED#
+ON RefProvider.ID = RefProvAssigned.RefProviderID
+INNER JOIN #REMOVED#
+ON RefProvAssigned.ProvOrgID = ProviderOrganization.ID
+WHERE RefProvider.NPI NOT IN (
+	SELECT NPI #REMOVED#
+)

@@ -1,0 +1,168 @@
+[COMMON]
+host : #REMOVED#
+port : #REMOVED#
+username : #REMOVED#
+server : #REMOVED#
+sftp_db : \\#REMOVED#\data it\Git\SFTP Transfer and File Setup\sftp.db
+setup_db : \\#REMOVED\DATA IT\Git\SFTP Transfer and File Setup\demo_import.db
+pdf_db : \\#REMOVED#\DATA IT\Git\SFTP Transfer and File Setup\pdfs.db
+incoming_charges : data all\Coding-Sharefile\Incoming Charges
+reconcile : DATA IT\Git\Reconcile
+globals = Globals
+
+[AACE_Kootenai]
+client : AACE
+sftp_dir : #REMOVED#
+local_dir : \\#REMOVED#\data all\EDI\AACE_Kootenai\Demographics TEXT
+sftp_table : AACE_Processed
+setup_table : AACE_DEMO_IMPORT
+
+[ANSA_MHS]
+client : ANSA
+location : MHS
+database : ansa_mhs_filetracker.db
+sftp_dir : #REMOVED#
+root : data all\EDI\ANSA_MHS
+pdfs : Billing And Compliance PDFs
+csvs : Missing Files TEXT
+setup_table : ANSA_MHS_Setup
+reconcile : ansa_mhs\ansa_mhs_run.pyw
+
+[BELL_PeaceHealth]
+client : BELL
+location : PeaceHealth
+sftp_dir : #REMOVED#
+root : data all\EDI\BELL_PeaceHealth
+sftp_table : BELL_PeaceHealth_SFTP
+setup_table : BELL_PeaceHealth_Setup
+reconcile : bell_peacehealth\bell_peacehealth_run.pyw
+
+[BELL_Skagit]
+client : BELL
+location : SVH
+database : bell_skagit_filetracker.db
+sftp_dir : #REMOVED#
+csv_dir : Demographics Text
+pdf_dir : SFTP PDFs
+root : data all\EDI\BELL_Skagit
+reconcile : bell_skagit\bell_skagit_run.pyw
+
+webscrape = DATA IT\Git\Web Scraping\bell_skagit\bell_skagit_run.pyw
+
+[BLDR_BCH]
+client : BLDR
+location : BCH
+database : bldr_bch_filetracker.db
+sftp_dir : #REMOVED#
+root : data all\EDI\BLDR_BCH
+
+billing_and_compliance : Billing and Compliance PDFs
+
+hospital_pdfs : Hospital PDFs
+csv : Demographics CSVs
+schedules : Schedules PDFs
+
+reconcile : bldr_bch\bldr_bch_run.pyw
+
+webscrape : Web Scraping\bldr_bch\bldr_bch_run.pyw
+
+[BLDR_UCH]
+client : BLDR
+location : UCH
+sftp_dir : #REMOVED#
+root : data all\EDI\BLDR_UCH
+
+billing_and_compliance : Billing and Compliance PDFs
+
+bulk_pdfs : Bulk PDFs
+schedules : Schedules CSVs
+
+sftp_table : BLDR_UCH_SFTP
+setup_table : BLDR_UCH_Setup
+reconcile : BLDR
+
+[CVHP_Skagit]
+client : CVHP
+location : SVH
+sftp_dir : #REMOVED#
+root : data all\EDI\CVHP_Skagit
+sftp_table : CVHP_Skagit_SFTP
+setup_table : CVHP_Skagit_Setup
+reconcile : cvhp
+
+[GVAA_Bozeman]
+client : GVAA
+location : Bozeman
+sftp_dir : #REMOVED#
+root : data all\EDI\GVAA_Bozeman Health
+billing_and_compliance : Patient Records PDFs
+sftp_table : GVAA_Bozeman_SFTP
+setup_table : GVAA_Bozeman_Setup
+compress_table : GVAA_Bozeman_Compress
+reconcile : gvaa\gvaa_run.pyw
+
+[MTRX_Evergreen]
+client : MTRX
+location : Evergreen
+sftp_dir : #REMOVED#
+root : data all\EDI\MTRX_Evergreen
+sftp_table : MTRX_Evergreen_SFTP
+setup_table : MTRX_Evergreen_Setup
+reconcile : mtrx_evergreen\mtrx_evergreen_run.pyw
+
+[MTRX_Overlake]
+client : MTRX
+location : Overlake
+sftp_dir : #REMOVED#
+root : data all\EDI\MTRX_Overlake
+sftp_table : MTRX_Overlake_SFTP
+setup_table : MTRX_Overlake_Setup
+reconcile : mtrx_overlake\mtrx_overlake_run.pyw
+
+[NMPS_PHS]
+client : NMPS
+location : PHS
+root : DATA ALL\EDI\NMPS_Presbytarian\Anesthesia Records PDFs
+database : nmps_phs_filetracker.db
+
+reconcile : NMPS
+
+[PCFC_CHI]
+client : PCFC
+location : CHI
+sftp_pdfs : #REMOVED#
+sftp_csvs : #REMOVED#
+database : pcfc_chi_filetracker.db
+reconcile : pcfc_chi\pcfc_chi_main.pyw
+root : data all\EDI\PCFC_CHI_Franciscan
+pdf_dir : PDFs
+csv_dir : Demographics TEXT
+
+[PCFC_Providence]
+client : PCFC
+location : Providence
+setup_table : PCFC_Providence_Setup
+reconcile : pcfc_providence\pcfc_providence_run.pyw
+root : data all\EDI\PCFC_Providence
+pdf_dir : 1_OriginalRecords
+
+[PCFC_SED]
+client : PCFC
+location : SED
+database : pcfc_sed_filetracker.db
+sftp_dir : #REMOVED#
+root : data all\EDI\PCFC_Swedish\PDFs
+sftp_table : PCFC_SWEDISH
+setup_table : PCFC_SWEDISH
+reconcile : pcfc_sed\pcfc_sed_main.pyw
+
+[VALL_VMC]
+client : VALL
+location : VMC
+database : vall_vmc_filetracker.db
+sftp_dir : #REMOVED#l
+root : data all\EDI\VALL
+
+csv_dir : Demographics TEXT
+
+reconcile : vall
